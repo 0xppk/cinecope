@@ -3,6 +3,11 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-}
+  reactStrictMode: true,
 
-module.exports = nextConfig
+  images: {
+    domains: ["dr.savee-cdn.com", "image.tmdb.org"],
+  },
+};
+
+module.exports = nextConfig;

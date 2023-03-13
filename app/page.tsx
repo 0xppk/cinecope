@@ -1,91 +1,37 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from './page.module.css'
+"use client";
+import LoginBtn from "./login-btn";
+import { MoviesContext } from "@/utils/index";
+import Image from "next/image";
+import { use } from "react";
+import useISO from "./utils/useISO";
 
-const inter = Inter({ subsets: ['latin'] })
-
-export default function Home() {
+export default function Page() {
+  const movies = use(MoviesContext);
+  const [handleRef, isVisible] = useISO({ threshold: 0.1 });
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
+    <>
+      <div className="flex gap-5 overflow-x-auto">
+        {movies.map((movie, i) => {
+          return (
             <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
+              key={movie.id}
+              ref={handleRef}
+              className={`h-auto w-auto transform-gpu select-none rounded-2xl duration-500 ${
+                isVisible[i]
+                  ? "skew-y-0 skew-x-0 scale-y-100 opacity-100 "
+                  : "skew-y-6 skew-x-6 scale-y-50 opacity-0"
+              }`}
+              src={movie.poster_path}
+              alt={movie.title}
+              width={400}
+              height={500}
+              draggable={false}
               priority
             />
-          </a>
-        </div>
+          );
+        })}
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-        </div>
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+      <LoginBtn />
+    </>
+  );
 }
