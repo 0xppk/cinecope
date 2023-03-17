@@ -1,13 +1,21 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { cva, VariantProps } from "cva";
-import { ComponentProps, Dispatch, Fragment, ReactNode, SetStateAction } from "react";
+import {
+  ComponentProps,
+  Dispatch,
+  Fragment,
+  ReactNode,
+  SetStateAction,
+  useRef,
+} from "react";
+import { cn } from "./cn";
 
 const modalStyles = cva(
-  `w-full transform overflow-hidden rounded-2xl bg-white p-6 text-left shadow-xl transition-all`,
+  `w-full transform overflow-hidden rounded-xl text-left shadow-xl transition-all`,
   {
     variants: {
       width: {
-        narrower: "min-w-",
+        narrower: "max-w-xs",
         narrow: "max-w-sm",
         regular: "max-w-md",
         wide: "max-w-lg",
@@ -16,9 +24,13 @@ const modalStyles = cva(
       center: {
         true: "flex flex-col",
       },
+      "bg-color": {
+        white: "bg-white",
+      },
     },
     defaultVariants: {
       width: "regular",
+      "bg-color": "white",
     },
   },
 );
@@ -57,19 +69,18 @@ export default function Modal({
         >
           <div className="fixed inset-0 bg-black bg-opacity-70" aria-hidden="true" />
         </Transition.Child>
-
         <div className="fixed inset-0 flex items-center justify-center overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4 text-center">
+          <div className="modal">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95"
+              enterFrom="opacity-0 scale-75"
               enterTo="opacity-100 scale-100"
               leave="ease-in duration-200"
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className={modalStyles({ width, center, className })}>
+              <Dialog.Panel className={cn(modalStyles({ width, center, className }))}>
                 <Dialog.Title
                   as="h3"
                   className={`text-lg font-medium leading-6 text-gray-900 ${

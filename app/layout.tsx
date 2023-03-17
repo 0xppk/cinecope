@@ -24,8 +24,8 @@ export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en" className={font.className}>
       <body draggable={false}>
-        {/* <BlobMouseEffect /> */}
-        <header className="flex items-center justify-center gap-10 border-b border-gray-600 px-10 py-4">
+        <BlobMouseEffect />
+        <header className="mx-auto flex max-w-7xl items-center justify-center gap-10 border-b border-gray-600 px-10 py-4">
           <div className="flex-grow-0">
             <Link href="/" className="">
               <Image src="/remove.png" alt="logo" width={70} height={70} />
@@ -35,9 +35,9 @@ export default function RootLayout({ children }: LayoutProps) {
             <SearchBar movies={movies} />
           </div>
         </header>
-        <main className="flex pt-2 sm:flex-col sm:items-center md:flex-row md:items-start">
+        <main className="mx-auto flex max-w-7xl pt-2 sm:flex-col sm:items-center md:flex-row md:items-start">
           <Providers movies={movies}>
-            <NavBar className="m-4 min-w-[12rem] rounded-2xl border border-gray-600" />
+            <NavBar className="sticky top-6 m-4 min-w-[12rem] rounded-2xl border border-gray-600 sm:hidden md:block" />
             <section className="flex-grow p-4">{children}</section>
           </Providers>
         </main>

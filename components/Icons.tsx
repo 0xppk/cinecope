@@ -1,31 +1,54 @@
 import { FiFilm, FiHome, FiLogIn, FiLogOut, FiUsers } from "react-icons/fi";
-import { GiSharpSmile, GiPopcorn } from "react-icons/gi";
+import { GiPopcorn, GiSharpSmile } from "react-icons/gi";
 import { IoIosRocket } from "react-icons/io";
+import { type IconBaseProps } from "react-icons/lib";
+import { MdOutlineHowToVote } from "react-icons/md";
 
 import { cn } from "~/hyezo/cn";
 
-type Props = {
-  className?: string;
-  as: "home" | "following" | "movies" | "login" | "logout" | "thriller" | "comedy" | "sf";
-};
+interface IconProps extends IconBaseProps {
+  as:
+    | "home"
+    | "following"
+    | "movies"
+    | "login"
+    | "logout"
+    | "thriller"
+    | "comedy"
+    | "sf"
+    | "view";
+}
 
-export const Icons = ({ className, as }: Props) => {
+export const Icons = ({ className, as, ...props }: IconProps) => {
   switch (as) {
     case "home":
-      return <FiHome className={cn(`mr-2 inline h-4 w-4 ${className}`)} />;
+      return <FiHome className={cn(`mr-2 inline h-4 w-4 ${className}`)} {...props} />;
     case "following":
-      return <FiUsers className={cn(`mr-2 inline h-4 w-4 ${className}`)} />;
+      return <FiUsers className={cn(`mr-2 inline h-4 w-4 ${className}`)} {...props} />;
     case "movies":
-      return <FiFilm className={cn(`mr-2 inline h-4 w-4 ${className}`)} />;
+      return <FiFilm className={cn(`mr-2 inline h-4 w-4 ${className}`)} {...props} />;
     case "login":
-      return <FiLogIn className={cn(`mr-2 inline h-4 w-4 ${className}`)} />;
+      return <FiLogIn className={cn(`mr-2 inline h-4 w-4 ${className}`)} {...props} />;
     case "logout":
-      return <FiLogOut className={cn(`mr-2 inline h-4 w-4 ${className}`)} />;
+      return <FiLogOut className={cn(`mr-2 inline h-4 w-4 ${className}`)} {...props} />;
     case "thriller":
-      return <GiSharpSmile className={cn(`mr-2 inline h-4 w-4 ${className}`)} />;
+      return (
+        <GiSharpSmile className={cn(`mr-2 inline h-4 w-4 ${className}`)} {...props} />
+      );
     case "comedy":
-      return <GiPopcorn className={cn(`mr-2 inline h-4 w-4 ${className}`)} />;
+      return <GiPopcorn className={cn(`mr-2 inline h-4 w-4 ${className}`)} {...props} />;
     case "sf":
-      return <IoIosRocket className={cn(`mr-2 inline h-4 w-4 ${className}`)} />;
+      return (
+        <IoIosRocket className={cn(`mr-2 inline h-4 w-4 ${className}`)} {...props} />
+      );
+    case "view":
+      return (
+        <MdOutlineHowToVote
+          className={cn(`mr-2 inline h-4 w-4 ${className}`)}
+          {...props}
+        />
+      );
+    default:
+      return <></>;
   }
 };

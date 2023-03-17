@@ -16,7 +16,7 @@ export default function NavBar({ children, ...props }: NavBarProps) {
   return (
     <nav {...props}>
       {/* 메인 네비게이터 */}
-      <div className="flex justify-center gap-4 p-4 sm:flex-row md:flex-col">
+      <div className="flex flex-col justify-center gap-4 p-4">
         <NavLink href="/">
           <Icons as="home" />
           Home
@@ -30,9 +30,9 @@ export default function NavBar({ children, ...props }: NavBarProps) {
           Movies
         </NavLink>
       </div>
-      {/* 인기있는 주제 */}
+      {/* 토픽 */}
       <NavLink.Title>Popular Topics</NavLink.Title>
-      <div className="flex justify-center gap-4 p-4 sm:flex-row md:flex-col">
+      <div className="flex justify-center gap-4 p-4 flex-col">
         <NavLink href="/topics/comedy">
           <Icons as="comedy" />
           Comedy
@@ -46,11 +46,11 @@ export default function NavBar({ children, ...props }: NavBarProps) {
           Sci-fi
         </NavLink>
       </div>
-      {/* 로그인시 유저 추천 */}
+      {/* 추천 */}
       {session && <NavLink.Title>Suggested Accounts</NavLink.Title>}
 
-      {/* 로그인-아웃 버튼 */}
-      <div className="flex justify-center gap-4 p-4 sm:flex-row md:flex-col">
+      {/* 로그인-아웃 */}
+      <div className="flex justify-center gap-4 p-4 flex-col">
         <div
           className="flex cursor-pointer items-center text-xs text-twitter-600 duration-200 active:text-orange-500/70"
           onClick={session?.user.name ? logOut : openModal}

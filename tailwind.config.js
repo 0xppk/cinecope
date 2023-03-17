@@ -86,7 +86,7 @@ module.exports = {
           900: "#2f3031",
         },
         brand: "var(--brand)",
-        point: "var(--point)"
+        point: "var(--point)",
       },
       cursor: {
         fancy: "url('/apps/docs/src/assets/cursor.png'), default",
@@ -194,6 +194,9 @@ module.exports = {
             "linear-gradient(135deg, hsla(0, 0%, 100%, 0.75) 10%, transparent 0, transparent 50%,hsla(0, 0%, 100%, 0.75) 0, hsla(0, 0%, 100%, 0.75) 60%, transparent 0, transparent)",
           "background-size": "7.07px 7.07px",
         },
+        ".text-shadow": {
+          "text-shadow": "1px 1px 2px black",
+        },
       });
     },
     ({ addComponents }) => {
@@ -261,6 +264,11 @@ module.exports = {
           position: "fixed",
           "z-index": "-1",
           "backdrop-filter": "blur(200px)",
+        },
+
+        ".modal": {
+          position: "relative",
+          "border-radius": "13px",
         },
       });
     },

@@ -29,7 +29,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "hyezo/ComboBox.tsx"
-, "app/topics/[id]"  ],
+    "hyezo/ComboBox.tsx",
+    "app/topics/[id]"
+  ],
   "exclude": ["node_modules"]
 }
