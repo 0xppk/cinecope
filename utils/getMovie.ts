@@ -28,10 +28,7 @@ const MovieInfo = z.object({
 export type MovieType = z.infer<typeof MovieInfo>;
 
 export default async function getMovie(id: string) {
-  const data = await await fetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${env.NEXT_PUBLIC_API_KEY}&language=en-US`,
-  ).then(res => res.json());
-
+  const data = await await fetch(`${devOrProd}/api/detail/${id}`).then(res => res.json());
   const results = MovieInfo.parse(data);
 
   return results;

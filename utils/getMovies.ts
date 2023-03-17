@@ -5,6 +5,10 @@ const MovieInfo = z.object({
   id: z.number(),
   title: z.string(),
   vote_average: z.number(),
+  overview: z.string(),
+  vote_count: z.number(),
+  popularity: z.number(),
+  release_date: z.string(),
   poster_path: z
     .string()
     .nullable()
@@ -22,7 +26,7 @@ const MovieSchema = z.object({
 });
 
 export default async function getMovies(config?: RequestInit) {
-  const data = await await fetch(`${devOrProd}/data/upcoming`, config).then(res =>
+  const data = await await fetch(`${devOrProd}/api/upcoming`, config).then(res =>
     res.json(),
   );
   const { results } = MovieSchema.parse(data);

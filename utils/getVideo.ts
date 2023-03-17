@@ -24,10 +24,9 @@ const MovieSchema = z.object({
 export type MovieVideoType = z.infer<typeof MovieInfo>;
 
 export default async function getVideo(id: number, config?: RequestInit) {
-  const data = await await fetch(
-    `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${env.NEXT_PUBLIC_API_KEY}&language=en-US`,
-    config,
-  ).then(res => res.json());
+  const data = await await fetch(`${devOrProd}/api/video/${id}`, config).then(res =>
+    res.json(),
+  );
 
   const { results } = MovieSchema.parse(data);
 
