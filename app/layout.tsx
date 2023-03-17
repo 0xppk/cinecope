@@ -1,10 +1,12 @@
-import { NavBar, SearchBar } from "@/components/index";
-import { getMovies, Providers } from "@/utils/index";
-import "hyezo/ui/styles.css";
+import "~/styles/tailwind.css";
+import { NavBar, SearchBar } from "~/components";
+import { getMovies, Providers } from "~/utils";
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import { use } from "react";
-import "./styles/tailwind.css";
+import BlobMouseEffect from "~/hyezo/BlobMouseEffect";
+import Image from "next/image";
+import Link from "next/link";
 
 const font = Nunito({
   subsets: ["latin"],
@@ -21,16 +23,22 @@ export default function RootLayout({ children }: LayoutProps) {
 
   return (
     <html lang="en" className={font.className}>
-      <body>
-        <header className="flex items-center justify-center border-b p-4">
-          <SearchBar movies={movies} />
+      <body draggable={false}>
+        <BlobMouseEffect />
+        <header className="mx-auto flex max-w-7xl items-center justify-center gap-10 border-b border-gray-600 px-10 py-4">
+          <div className="flex-grow-0">
+            <Link href="/" className="">
+              <Image src="/remove.png" alt="logo" width={70} height={70} />
+            </Link>
+          </div>
+          <div className="flex flex-grow justify-center">
+            <SearchBar movies={movies} />
+          </div>
         </header>
-        <main className="flex">
-          <nav className="m-4 max-w-xs rounded-2xl border p-4">
-            <NavBar className="flex flex-col gap-4" />
-          </nav>
+        <main className="mx-auto flex max-w-7xl pt-2 sm:flex-col sm:items-center md:flex-row md:items-start">
           <Providers movies={movies}>
-            <section className="p-4">{children}</section>
+            <NavBar className="sticky top-6 m-4 min-w-[12rem] rounded-2xl border border-gray-600 sm:hidden md:block" />
+            <section className="flex-grow p-4">{children}</section>
           </Providers>
         </main>
       </body>

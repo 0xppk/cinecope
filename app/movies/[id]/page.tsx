@@ -1,5 +1,5 @@
 import { use } from "react";
-import { getMovie, getMovies } from "@/utils/index";
+import { getMovie, getMovies, getVideo } from "~/utils";
 import Image from "next/image";
 import { Metadata } from "next";
 
@@ -18,9 +18,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default function Page({ params }: PageProps) {
   const movie = use(getMovie(params.id));
+  const video = use(getVideo(params.id));
 
   return (
     <div>
+      <h1>{video[0]?.url}</h1>
       <div>{movie.title}</div>
       <div>{movie.overview}</div>
       <div className="flex gap-3">

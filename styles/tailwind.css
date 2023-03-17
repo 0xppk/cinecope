@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply h-full;
+  }
+  body {
+    @apply h-screen w-full overflow-x-hidden bg-brand text-white;
+  }
+
+  ::-webkit-scrollbar {
+    @apply hidden;
+  }
+
+  h1 {
+    @apply text-3xl;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+}
+
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+:root {
+  --brand: #181818;
+  --point: #f56565;
+  --mocol-1: #191a1a;
+  --mocol-2: #272729;
+  --mocol-3: #caddf5;
+}
+
+.modal::before,
+.modal::after {
+  content: "";
+  position: absolute;
+  inset: -0.04rem;
+  z-index: -1;
+  background: conic-gradient(
+    from var(--gradient-angle),
+    var(--mocol-1),
+    var(--mocol-2),
+    var(--mocol-3),
+    var(--mocol-2),
+    var(--mocol-1)
+  );
+  border-radius: inherit;
+  animation: rotation 5s linear infinite;
+}
+
+.modal::after {
+  filter: blur(1rem);
+}
+
+@keyframes rotation {
+  0% {
+    --gradient-angle: 0deg;
+  }
+  100% {
+    --gradient-angle: 360deg;
+  }
+}

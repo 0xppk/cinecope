@@ -5,6 +5,8 @@ module.exports = {
   content: [
     // app content
     `app/**/*.{js,ts,jsx,tsx}`,
+    `components/**/*.{js,ts,jsx,tsx}`,
+    `hyezo/**/*.{js,ts,jsx,tsx}`,
   ],
   darkMode: "class",
   theme: {
@@ -22,7 +24,6 @@ module.exports = {
           "50%": { transform: "scale(1.2, 1.3)" },
           to: { transform: "rotate(360deg)" },
         },
-        
       },
       animation: {
         wiggle: "wiggle 1s ease-in-out infinite",
@@ -84,6 +85,8 @@ module.exports = {
           800: "#5f6162",
           900: "#2f3031",
         },
+        brand: "var(--brand)",
+        point: "var(--point)",
       },
       cursor: {
         fancy: "url('/apps/docs/src/assets/cursor.png'), default",
@@ -191,6 +194,9 @@ module.exports = {
             "linear-gradient(135deg, hsla(0, 0%, 100%, 0.75) 10%, transparent 0, transparent 50%,hsla(0, 0%, 100%, 0.75) 0, hsla(0, 0%, 100%, 0.75) 60%, transparent 0, transparent)",
           "background-size": "7.07px 7.07px",
         },
+        ".text-shadow": {
+          "text-shadow": "1px 1px 2px black",
+        },
       });
     },
     ({ addComponents }) => {
@@ -225,7 +231,7 @@ module.exports = {
           "border-radius": "15px",
         },
 
-        ".masonryOverlay": {
+        ".overlay": {
           position: "absolute",
           top: "0",
           left: "0",
@@ -258,6 +264,11 @@ module.exports = {
           position: "fixed",
           "z-index": "-1",
           "backdrop-filter": "blur(200px)",
+        },
+
+        ".modal": {
+          position: "relative",
+          "border-radius": "13px",
         },
       });
     },

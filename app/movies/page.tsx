@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { use } from "react";
-import { MoviesContext } from "@/utils/index";
+import { MoviesContext } from "~/utils";
 
 export default function HomePage() {
   const movies = use(MoviesContext);
